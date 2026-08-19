@@ -37,8 +37,8 @@ struct MsgOffset {
   static constexpr std::size_t LOAD_POWER_LSB    = 14;
 
   // phases
-  static constexpr std::size_t PHASE1_BASE       = 15;  // 15..22
-  static constexpr std::size_t PHASE_STRIDE      = 8;   // 23, 31
+  static constexpr std::size_t PHASE1_BASE  = 54;
+  static constexpr std::size_t PHASE_STRIDE = 8;   // 23, 31
 
   // PVs
   static constexpr std::size_t PV1_BASE          = 39;  // 39..42
