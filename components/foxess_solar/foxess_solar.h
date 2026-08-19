@@ -92,6 +92,9 @@ class FoxessSolar : public PollingComponent, public uart::UARTDevice {
   // now just simple helpers, no span:
   void publish_zero_phases();
   void publish_zero_pvs();
+  
+    void test_flow_control();
+    bool flow_test_done_{false};
 
   GPIOPin *flow_control_pin_{nullptr};
   uint32_t millis_lastmessage_{0};
