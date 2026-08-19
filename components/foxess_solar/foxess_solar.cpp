@@ -93,6 +93,9 @@ void FoxessSolar::update() {
   // read bytes
   while (this->available() > 0) {
     this->read_byte(&this->input_buffer[this->buffer_end]);
+		ESP_LOGD(TAG, "RX byte [%u] = 0x%02X",
+    	(unsigned) this->buffer_end,
+        this->input_buffer[this->buffer_end]);
     optional<bool> state = this->check_msg();
 
     if (!state.has_value()) {
