@@ -51,8 +51,8 @@ struct MsgOffset {
   static constexpr std::size_t AMBIENT_TEMP_MSB   = 116;
   static constexpr std::size_t AMBIENT_TEMP_LSB   = 117;
   // energy
-  static constexpr std::size_t ENERGY_DAY_MSB    = 69;
-  static constexpr std::size_t ENERGY_DAY_LSB    = 70;
+  static constexpr std::size_t ENERGY_DAY_MSB = 118;
+  static constexpr std::size_t ENERGY_DAY_LSB = 119;
   static constexpr std::size_t TOTAL_ENERGY_MSB0 = 71;  // 71..74
 
   // error block
