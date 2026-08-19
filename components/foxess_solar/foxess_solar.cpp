@@ -42,33 +42,6 @@ static inline uint32_t decode_uint32(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t
 
 // -----------------------------------------------------------------------------
 
-  // TX mode
-  this->flow_control_pin_->digital_write(true);
-  ESP_LOGI(TAG, "GPIO4 HIGH -> MAX485 TX mode");
-  delay(100);
-
-  // RX mode
-  this->flow_control_pin_->digital_write(false);
-  ESP_LOGI(TAG, "GPIO4 LOW -> MAX485 RX mode");
-}
-
-void FoxessSolar::setup() {
-  ESP_LOGI(TAG, "FoxESS RS485 setup");
-
-  if (this->flow_control_pin_ != nullptr) {
-    this->flow_control_pin_->setup();
-
-    // DE + /RE = LOW -> MAX485 RECEIVE mode
-    this->flow_control_pin_->digital_write(false);
-
-    ESP_LOGI(TAG, "MAX485 set to RECEIVE mode");
-  } else {
-    ESP_LOGW(TAG, "No RS485 flow control pin configured");
-  }
-
-  this->millis_lastmessage_ = millis();
-}
-
 void FoxessSolar::publish_zero_phases() {
   for (auto &ph : this->phases_) {
     publish_sensor_state(ph.voltage_sensor_, 0, 1.0f);
@@ -89,11 +62,6 @@ void FoxessSolar::publish_zero_pvs() {
 void FoxessSolar::update() {
   ESP_LOGVV(TAG, "update start");
 
-	  if (!this->flow_test_done_) {
-    this->test_flow_control();
-    this->flow_test_done_ = true;
-  }
-	
   // handle timeout
   if (millis() - this->millis_lastmessage_ >= INVERTER_TIMEOUT) {
     if (this->inverter_mode_ != 0) {
