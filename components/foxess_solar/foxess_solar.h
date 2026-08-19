@@ -63,11 +63,6 @@ class FoxessSolar : public PollingComponent, public uart::UARTDevice {
   void setup() override;
   void update() override;
 
-if (!this->flow_test_done_) {
-  this->test_flow_control();
-  this->flow_test_done_ = true;
-}
-  
   SENSOR_SETTER(loads_power)
   SENSOR_SETTER(grid_power)
   SENSOR_SETTER(generation_power)
@@ -98,9 +93,6 @@ if (!this->flow_test_done_) {
   void publish_zero_phases();
   void publish_zero_pvs();
   
-    void test_flow_control();
-    bool flow_test_done_{false};
-
   GPIOPin *flow_control_pin_{nullptr};
   uint32_t millis_lastmessage_{0};
   std::array<uint8_t, BUFFER_SIZE> input_buffer{};
