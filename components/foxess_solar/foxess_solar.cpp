@@ -43,11 +43,17 @@ static inline uint32_t decode_uint32(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t
 // -----------------------------------------------------------------------------
 
 void FoxessSolar::setup() {
-  ESP_LOGD(TAG, "FoxESS T20-G3 receiver initialized");
+  ESP_LOGI(TAG, "FoxESS RS485 setup");
 
   if (this->flow_control_pin_ != nullptr) {
     this->flow_control_pin_->setup();
-    this->flow_control_pin_->digital_write(false);  // receive mode
+
+    // DE + /RE = LOW -> MAX485 RECEIVE mode
+    this->flow_control_pin_->digital_write(false);
+
+    ESP_LOGI(TAG, "MAX485 set to RECEIVE mode");
+  } else {
+    ESP_LOGW(TAG, "No RS485 flow control pin configured");
   }
 
   this->millis_lastmessage_ = millis();
