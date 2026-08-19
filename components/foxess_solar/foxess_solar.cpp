@@ -41,6 +41,15 @@ static inline uint32_t decode_uint32(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t
 }
 
 // -----------------------------------------------------------------------------
+void FoxessSolar::setup() {
+  ESP_LOGVV(TAG, "setup start");
+
+  if (this->flow_control_pin_ != nullptr) {
+    this->flow_control_pin_->setup();
+  }
+
+  this->millis_lastmessage_ = millis();
+}
 
 void FoxessSolar::publish_zero_phases() {
   for (auto &ph : this->phases_) {
@@ -159,6 +168,7 @@ optional<bool> FoxessSolar::check_msg() {
   return true;
 }
 
+//Parsing message
 void FoxessSolar::parse_message() {
   ESP_LOGVV(TAG, "parse_message start");
 
