@@ -178,7 +178,7 @@ void FoxessSolar::parse_message() {
   const std::size_t total_len = this->buffer_end + 1;
   auto &msg = this->input_buffer;
 
-  if (total_len != 163) {
+  if (total_len != 342) {
     ESP_LOGW(TAG, "unexpected message length: %u (expected 163)", (unsigned) total_len);
     this->status_set_warning();
   }
