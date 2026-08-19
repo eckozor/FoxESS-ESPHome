@@ -37,7 +37,7 @@ CONF_PV4 = "pv4"
 
 CONF_LOADS_POWER = "loads_power"
 CONF_GRID_POWER = "grid_power"
-CONF_GENERATION_POWER = "generation_power""
+CONF_GENERATION_POWER = "generation_power"
 
 CONF_INVERTER_STATUS = "inverter_status"
 CONF_INVERTER_TEMP = "inverter_temp"
