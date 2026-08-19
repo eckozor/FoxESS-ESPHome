@@ -41,13 +41,6 @@ static inline uint32_t decode_uint32(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t
 }
 
 // -----------------------------------------------------------------------------
-void FoxessSolar::test_flow_control() {
-  if (this->flow_control_pin_ == nullptr) {
-    ESP_LOGW(TAG, "No flow control pin configured");
-    return;
-  }
-
-  ESP_LOGI(TAG, "Testing MAX485 direction");
 
   // TX mode
   this->flow_control_pin_->digital_write(true);
@@ -96,6 +89,11 @@ void FoxessSolar::publish_zero_pvs() {
 void FoxessSolar::update() {
   ESP_LOGVV(TAG, "update start");
 
+	  if (!this->flow_test_done_) {
+    this->test_flow_control();
+    this->flow_test_done_ = true;
+  }
+	
   // handle timeout
   if (millis() - this->millis_lastmessage_ >= INVERTER_TIMEOUT) {
     if (this->inverter_mode_ != 0) {
