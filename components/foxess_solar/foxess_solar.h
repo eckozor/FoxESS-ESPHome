@@ -29,10 +29,10 @@ static const std::array<uint8_t, 2> MSG_FOOTER = {0xE7, 0xE7};
 // All offsets in one place
 struct MsgOffset {
   // powers
-  static constexpr std::size_t GRID_POWER_MSB    = 9;
-  static constexpr std::size_t GRID_POWER_LSB    = 10;
-  static constexpr std::size_t GEN_POWER_MSB     = 11;
-  static constexpr std::size_t GEN_POWER_LSB     = 12;
+  static constexpr std::size_t GRID_POWER_MSB = 52;
+  static constexpr std::size_t GRID_POWER_LSB = 53;
+  static constexpr std::size_t GEN_POWER_MSB  = 48;
+  static constexpr std::size_t GEN_POWER_LSB  = 49;
   static constexpr std::size_t LOAD_POWER_MSB    = 13;
   static constexpr std::size_t LOAD_POWER_LSB    = 14;
 
@@ -45,13 +45,12 @@ struct MsgOffset {
   static constexpr std::size_t PV_STRIDE         = 6;   // 45, 51, 57
 
   // temps
-  static constexpr std::size_t BOOST_TEMP_MSB    = 63;
-  static constexpr std::size_t BOOST_TEMP_LSB    = 64;
-  static constexpr std::size_t INVERTER_TEMP_MSB = 65;
-  static constexpr std::size_t INVERTER_TEMP_LSB = 66;
-  static constexpr std::size_t AMBIENT_TEMP_MSB  = 67;
-  static constexpr std::size_t AMBIENT_TEMP_LSB  = 68;
-
+  static constexpr std::size_t BOOST_TEMP_MSB     = 112;
+  static constexpr std::size_t BOOST_TEMP_LSB     = 113;
+  static constexpr std::size_t INVERTER_TEMP_MSB  = 114;
+  static constexpr std::size_t INVERTER_TEMP_LSB  = 115;
+  static constexpr std::size_t AMBIENT_TEMP_MSB   = 116;
+  static constexpr std::size_t AMBIENT_TEMP_LSB   = 117;
   // energy
   static constexpr std::size_t ENERGY_DAY_MSB    = 69;
   static constexpr std::size_t ENERGY_DAY_LSB    = 70;
