@@ -63,6 +63,11 @@ class FoxessSolar : public PollingComponent, public uart::UARTDevice {
   void setup() override;
   void update() override;
 
+if (!this->flow_test_done_) {
+  this->test_flow_control();
+  this->flow_test_done_ = true;
+}
+  
   SENSOR_SETTER(loads_power)
   SENSOR_SETTER(grid_power)
   SENSOR_SETTER(generation_power)
