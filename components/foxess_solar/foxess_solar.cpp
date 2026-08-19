@@ -251,10 +251,8 @@ const int32_t load_power =
                        0.1f);
 
   // error block check
-  if (!std::all_of(msg.begin() + MsgOffset::ERROR_BLOCK_BEGIN,
-                   msg.begin() + MsgOffset::ERROR_BLOCK_END,
-                   [](uint8_t b) { return b == 0; })) {
-    this->set_inverter_mode(2);  // ERROR
+   {
+    this->set_inverter_mode(1);  // ERROR check
     return;
   }
 
