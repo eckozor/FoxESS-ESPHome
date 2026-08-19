@@ -29,12 +29,11 @@ static const std::array<uint8_t, 2> MSG_FOOTER = {0xE7, 0xE7};
 // All offsets in one place
 struct MsgOffset {
   // powers
-  static constexpr std::size_t GRID_POWER_MSB = 52;
-  static constexpr std::size_t GRID_POWER_LSB = 53;
+
   static constexpr std::size_t GEN_POWER_MSB  = 48;
   static constexpr std::size_t GEN_POWER_LSB  = 49;
-  static constexpr std::size_t LOAD_POWER_MSB    = 13;
-  static constexpr std::size_t LOAD_POWER_LSB    = 14;
+  static constexpr std::size_t LOAD_POWER_MSB = 52;
+  static constexpr std::size_t LOAD_POWER_LSB = 53;
 
   // phases
   static constexpr std::size_t PHASE1_BASE  = 54;
