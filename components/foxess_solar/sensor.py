@@ -37,9 +37,7 @@ CONF_PV4 = "pv4"
 
 CONF_LOADS_POWER = "loads_power"
 CONF_GRID_POWER = "grid_power"
-CONF_GENERATION_POWER = "generation_power"
-CONF_DAILY_CONSUMPTION = "daily_consumption"
-CONF_TOTAL_CONSUMPTION = "total_consumption"
+CONF_GENERATION_POWER = "generation_power""
 
 CONF_INVERTER_STATUS = "inverter_status"
 CONF_INVERTER_TEMP = "inverter_temp"
@@ -115,19 +113,7 @@ CONFIG_SCHEMA = (
             cv.Optional(CONF_PV3): PV_SCHEMA,
             cv.Optional(CONF_PV4): PV_SCHEMA,
             cv.Optional(CONF_INVERTER_STATUS): sensor.sensor_schema(),
-            
-            cv.Optional(CONF_DAILY_CONSUMPTION): sensor.sensor_schema(
-            unit_of_measurement="kWh",
-            accuracy_decimals=1,
-            device_class="energy",
-            state_class="total_increasing",
-            ),
-            cv.Optional(CONF_TOTAL_CONSUMPTION): sensor.sensor_schema(
-            unit_of_measurement="kWh",
-            accuracy_decimals=1,
-            device_class="energy",
-            state_class="total_increasing",
-            ),
+
             
             cv.Optional(CONF_LOADS_POWER): sensor.sensor_schema(
                 unit_of_measurement=UNIT_WATT,
@@ -208,14 +194,6 @@ async def to_code(config):
         CONF_TOTAL_ENERGY_PRODUCTION,
     ]:
     
-        if CONF_DAILY_CONSUMPTION in config:
-            sens = await sensor.new_sensor(config[CONF_DAILY_CONSUMPTION])
-            cg.add(var.set_daily_consumption_sensor(sens))
-
-        if CONF_TOTAL_CONSUMPTION in config:
-            sens = await sensor.new_sensor(config[CONF_TOTAL_CONSUMPTION])
-            cg.add(var.set_total_consumption_sensor(sens))
-        
         if key in config:
             sens = await sensor.new_sensor(config[key])
             cg.add(getattr(var, f"set_{key}_sensor")(sens))
