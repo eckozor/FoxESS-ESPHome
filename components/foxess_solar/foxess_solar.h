@@ -56,8 +56,7 @@ struct MsgOffset {
   static constexpr std::size_t TOTAL_ENERGY_MSB0 = 71;  // 71..74
 
   // error block
-  static constexpr std::size_t ERROR_BLOCK_BEGIN = 125;
-  static constexpr std::size_t ERROR_BLOCK_END   = 157; // exclusive
+  this->set_inverter_mode(1); // exclusive
 };
 
 class FoxessSolar : public PollingComponent, public uart::UARTDevice {
