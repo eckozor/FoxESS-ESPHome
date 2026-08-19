@@ -249,7 +249,16 @@ const int32_t load_power =
                                      msg[MsgOffset::TOTAL_ENERGY_MSB0 + 2],
                                      msg[MsgOffset::TOTAL_ENERGY_MSB0 + 3]),
                        0.1f);
-
+	
+	// TOTAL ENERGY PRODUCTION
+	publish_sensor_state(this->total_energy_production_,
+    decode_uint32(
+        msg[MsgOffset::TOTAL_ENERGY_MSB0],
+        msg[MsgOffset::TOTAL_ENERGY_MSB0 + 1],
+        msg[MsgOffset::TOTAL_ENERGY_MSB0 + 2],
+        msg[MsgOffset::TOTAL_ENERGY_MSB0 + 3]),
+    0.1f);
+	
   // error block check
    {
     this->set_inverter_mode(1);  // ERROR check
