@@ -21,7 +21,7 @@ namespace esphome {
 namespace foxess_solar {
 
 static const long INVERTER_TIMEOUT = 300000;  // ms
-static const std::size_t BUFFER_SIZE = 256;
+static const std::size_t BUFFER_SIZE = 512;
 
 static const std::array<uint8_t, 3> MSG_HEADER = {0x7E, 0x7E, 0x02};
 static const std::array<uint8_t, 2> MSG_FOOTER = {0xE7, 0xE7};
