@@ -183,19 +183,24 @@ void FoxessSolar::parse_message() {
     this->status_set_warning();
   }
 
-  // powers
-  publish_sensor_state(this->grid_power_,
-                       decode_int16(msg[MsgOffset::GRID_POWER_MSB],
-                                    msg[MsgOffset::GRID_POWER_LSB]),
-                       1.0f);
-  publish_sensor_state(this->generation_power_,
-                       decode_uint16(msg[MsgOffset::GEN_POWER_MSB],
-                                     msg[MsgOffset::GEN_POWER_LSB]),
-                       1.0f);
-  publish_sensor_state(this->loads_power_,
-                       decode_int16(msg[MsgOffset::LOAD_POWER_MSB],
-                                    msg[MsgOffset::LOAD_POWER_LSB]),
-                       1.0f);
+// powers
+
+const int32_t generation_power =
+    decode_uint16(msg[MsgOffset::GEN_POWER_MSB],
+                  msg[MsgOffset::GEN_POWER_LSB]);
+
+const int32_t load_power =
+    decode_int16(msg[MsgOffset::LOAD_POWER_MSB],
+                 msg[MsgOffset::LOAD_POWER_LSB]);
+
+// Grid export power is calculated from generation and load
+	const int32_t grid_power = generation_power - load_power;
+
+	publish_sensor_state(this->generation_power_, generation_power, 1.0f);
+
+	publish_sensor_state(this->loads_power_, load_power, 1.0f);
+
+	publish_sensor_state(this->grid_power_, grid_power, 1.0f);
 
   // phases
   for (std::size_t i = 0; i < 3; i++) {
