@@ -20,7 +20,7 @@
 namespace esphome {
 namespace foxess_solar {
 
-static const long INVERTER_TIMEOUT = 300000;  // ms
+static const long INVERTER_TIMEOUT = 600000;  // ms
 static const std::size_t BUFFER_SIZE = 512;
 
 static const std::array<uint8_t, 3> MSG_HEADER = {0x7E, 0x7E, 0x02};
@@ -54,8 +54,6 @@ struct MsgOffset {
   static constexpr std::size_t ENERGY_DAY_MSB = 118;
   static constexpr std::size_t ENERGY_DAY_LSB = 119;
   static constexpr std::size_t TOTAL_ENERGY_MSB0 = 120;
-  static constexpr std::size_t TOTAL_ENERGY_MSB0 = 71;  // 71..74
-
   // error block
 
 };
