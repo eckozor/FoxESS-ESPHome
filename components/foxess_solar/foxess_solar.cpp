@@ -41,6 +41,23 @@ static inline uint32_t decode_uint32(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t
 }
 
 // -----------------------------------------------------------------------------
+void FoxessSolar::test_flow_control() {
+  if (this->flow_control_pin_ == nullptr) {
+    ESP_LOGW(TAG, "No flow control pin configured");
+    return;
+  }
+
+  ESP_LOGI(TAG, "Testing MAX485 direction");
+
+  // TX mode
+  this->flow_control_pin_->digital_write(true);
+  ESP_LOGI(TAG, "GPIO4 HIGH -> MAX485 TX mode");
+  delay(100);
+
+  // RX mode
+  this->flow_control_pin_->digital_write(false);
+  ESP_LOGI(TAG, "GPIO4 LOW -> MAX485 RX mode");
+}
 
 void FoxessSolar::setup() {
   ESP_LOGI(TAG, "FoxESS RS485 setup");
