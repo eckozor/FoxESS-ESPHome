@@ -71,8 +71,6 @@ class FoxessSolar : public PollingComponent, public uart::UARTDevice {
   SENSOR_SETTER(ambient_temp)
   SENSOR_SETTER(energy_production_day)
   SENSOR_SETTER(total_energy_production)
-  SENSOR_SETTER(daily_consumption)
-  SENSOR_SETTER(total_consumption)
   SENSOR_SETTER(inverter_status)
 
   PHASE_SENSOR_SETTER(voltage)
@@ -125,8 +123,7 @@ class FoxessSolar : public PollingComponent, public uart::UARTDevice {
   sensor::Sensor *ambient_temp_{nullptr};
   sensor::Sensor *energy_production_day_{nullptr};
   sensor::Sensor *total_energy_production_{nullptr};
-  sensor::Sensor *daily_consumption_{nullptr};
-  sensor::Sensor *total_consumption_{nullptr};
+
 };
 
 }  // namespace foxess_solar
