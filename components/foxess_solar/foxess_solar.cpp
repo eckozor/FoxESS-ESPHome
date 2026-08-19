@@ -43,10 +43,11 @@ static inline uint32_t decode_uint32(uint8_t b0, uint8_t b1, uint8_t b2, uint8_t
 // -----------------------------------------------------------------------------
 
 void FoxessSolar::setup() {
-  ESP_LOGVV(TAG, "setup start");
+  ESP_LOGD(TAG, "FoxESS T20-G3 receiver initialized");
 
   if (this->flow_control_pin_ != nullptr) {
     this->flow_control_pin_->setup();
+    this->flow_control_pin_->digital_write(false);  // receive mode
   }
 
   this->millis_lastmessage_ = millis();
@@ -176,8 +177,10 @@ void FoxessSolar::parse_message() {
   auto &msg = this->input_buffer;
 
   if (total_len != 342) {
-    ESP_LOGW(TAG, "unexpected message length: %u (expected 163)", (unsigned) total_len);
+    ESP_LOGW(TAG, "Unexpected measurement frame length: %u",
+           (unsigned) total_len);
     this->status_set_warning();
+	  return;
   }
 
 // powers
